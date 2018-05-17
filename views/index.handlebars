@@ -1,0 +1,74 @@
+<div class="container">
+
+<div class="row">
+		<div class="col-xs-12 logo-center" id="top-bar">
+			<img src="/assets/images/to-do-list_logo.jpg" alt="todolist" />
+		</div>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <center>
+    <!-- Left side (incomplete) -->
+    <div class="col-md-5">
+      <h2 class="itemNotdone">To Do Tasks</h2>
+      <div id="todotasks">
+
+        <!-- Dynamically Insert tasks Here -->
+        
+        {{#each todolist}}
+          {{#unless this.tododone}}
+             <form action="/todolist/update/{{this.id}}" method="POST">
+                <div class="input-group todoDone">
+                <li class="form-control todoTrim">{{this.todoitem}}</li>
+                <span class="input-group-btn">
+                    <button class="btn btn-success chgtaskButton" type="submit">Complete</button>
+                  </span>
+                </div>
+                </form>
+          {{/unless}}
+        {{/each}}
+       
+      </div>  
+    </div> 
+    <div class="col-md-1"></div>       
+
+    <!-- Right side (completed) -->
+    <div class="col-md-5">
+      <h2 class="todoDone">Completed tasks!</h2>
+      <div id="already_completed">
+
+        <!-- Dynamically Insert completed tasks Here -->
+        {{#each todolist}}
+          {{#if this.tododone}}
+             <form action="/todolist/delete/{{this.id}}?_method=PUT" method="POST">
+            <div class="input-group todoDone">
+              <li class="form-control todoTrim">{{this.todoitem}}</li>
+              <span class="input-group-btn">
+                  <button class="btn btn-success addtaskButton" id={{id}} type="submit">Delete</button>
+                </span>
+            </div>
+            </form>
+          {{/if}}
+        {{/each}}
+
+      </div>
+    </div>
+  </center>
+</div>
+<br>
+<br>
+
+
+	<div class="row">
+		<div class="col-xs-12 text-center enter_section">
+      <h2 class="text-center" >Add A Task</h2>
+			<form action="todolist" method="POST">
+				<input type="textarea" class="form-control" id="name" name="todoitem" value="" id="enter_text" rows="3" required>
+				<button type="submit" class="btn btn-primary addtaskButton" id="text-enter-button">Add Task</button>
+			</form>
+			<p>Enter a new task. Click the "Add Task" button.</p>
+		</div>
+	</div>
+
+	
+
