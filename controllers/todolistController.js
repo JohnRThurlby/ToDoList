@@ -12,9 +12,9 @@ var twilio = require('twilio');
 if (process.env.NODE_ENV != "PRODUCTION") {
   var client = new twilio(process.env.accountsid, process.env.authtoken);
 }
-else {
-  var client = new twilio(ACCOUNTSID, AUTHTOKEN);
-}
+//else {
+ // var client = new twilio(ACCOUNTSID, AUTHTOKEN);
+//}
 
 
 var PhoneNumber = require( 'awesome-phonenumber' );
