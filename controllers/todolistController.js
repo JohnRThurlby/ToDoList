@@ -3,12 +3,19 @@
 // Node Dependencies
 require("dotenv").config()
 const express = require('express'),
-      keys = require("../config/keys.js"),      
+//      keys = require("../config/keys.js"),      
       router = express.Router(),
       todolist = require('../models/todolist.js')
        
 var twilio = require('twilio');
-var client = new twilio(keys.twilioAccess.accountsid, keys.twilioAccess.authtoken);
+
+if (process.env.NODE_ENV != "PRODUCTION") {
+  var client = new twilio(process.env.accountsid, process.env.authtoken);
+}
+else {
+  var client = new twilio(ACCOUNTSID, AUTHTOKEN);
+}
+
 
 var PhoneNumber = require( 'awesome-phonenumber' );
 

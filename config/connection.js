@@ -2,9 +2,9 @@
 
 // Set up MySQL connection.
 require("dotenv").config()
-const keys = require("./keys.js"),
-      mysql = require("mysql"), 
-      mysqlPass = keys.sqlAccess
+// const keys = require("./keys.js"),
+const mysql = require("mysql") 
+//      mysqlPass = keys.sqlAccess
 
 if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL)
@@ -13,7 +13,7 @@ if (process.env.JAWSDB_URL) {
   host: "localhost",
   port: 3306,
   user: "root",
-  password: mysqlPass.sql_pass,
+  password: process.env.sql_Password,
   database: "todolist_db"
 })
 }
