@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/JohnRThurlby/ToDoList#readme",
   "dependencies": {
+    "awesome-phonenumber": "^2.2.5",
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.15.0"
+    "mysql": "^2.15.0",
+    "popups": "^1.1.3",
+    "twilio": "^3.17.0"
   }
 }

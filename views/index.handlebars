@@ -102,16 +102,42 @@
 
     <form action="todolist" method="POST">
       
-      <input type="textarea" class="form-control" id="name" name="todoitem" value="" id="enter_text" rows="3" required>
+      <textarea class="form-control" id="name" name="todoitem" placeholder="Task" id="enter_text" maxlength="30" required></textarea>
+      <br>
+      <textarea class="form-control" id="phone" name="phonenum" placeholder="Phone Number (format: xxxxxxxxxx)" maxlength="10" pattern="^\d{10}$"></textarea>
+      <br>
       <button type="submit" class="btn btn-primary addtaskButton" id="text-enter-button">Add Task</button>
 
     </form> <!-- end form -->
 
     <p>Enter a new task. Click the "Add Task" button.</p>
+    <br>
+    <p>If you would like a text of your task, enter a 10 digit phone number.</p>
  
   </div> <!-- end class=col-xs-12 text-center enter_section -->
 
 </div> <!-- end class=row -->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 	
 

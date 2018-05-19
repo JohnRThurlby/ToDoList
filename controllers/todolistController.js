@@ -1,10 +1,18 @@
 // Written by John R. Thurlby May 2018
 
 // Node Dependencies
+require("dotenv").config()
 const express = require('express'),
+      keys = require("../config/keys.js"),      
       router = express.Router(),
       todolist = require('../models/todolist.js')
+       
+var twilio = require('twilio');
+var client = new twilio(keys.twilioAccess.accountsid, keys.twilioAccess.authtoken);
 
+var PhoneNumber = require( 'awesome-phonenumber' );
+
+var phoneText = " "
 
 // Create routes
 // ----------------------------------------------------
@@ -25,7 +33,27 @@ router.get('/index', function (req, res) {
 
 // Create a todolist
 router.post('/todolist', function (req, res) {
+  console.log(req.body.phonenum)
+  
 
+  var pn = new PhoneNumber( req.body.phonenum, 'US' );
+  if (pn.isValid()) {
+    phoneText = "+1" + req.body.phonenum
+
+    console.log("phoneText " + phoneText)
+
+    client.messages.create({
+      body: req.body.todoitem,
+      to: phoneText,  // Text this number
+      from: '+16093164815' // From a valid Twilio number
+    })
+    .then((message) => console.log(message.sid));
+
+  }
+  else {
+          
+  }
+  
   todolist.insertOne(req.body.todoitem, function() {
     res.redirect('/index')
   })
