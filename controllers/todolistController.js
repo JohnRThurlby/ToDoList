@@ -13,7 +13,7 @@ if (process.env.NODE_ENV != "PRODUCTION") {
   var client = new twilio(process.env.accountsid, process.env.authtoken);
 }
 else {
-  var client = new twilio();
+  var client = new twilio(process.env.ACCOUNTSID, process.env.AUTHTOKEN);
 }
 
 
