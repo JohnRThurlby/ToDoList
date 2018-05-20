@@ -134,3 +134,28 @@ footer {
 	font-size: 100%;
 	color: #fff;
 }
+
+#header {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 310px;
+}
+
+#google_translate_element {
+  float: right;
+}
+.goog-logo-link, .goog-logo-link:link, .goog-logo-link:visited, .goog-logo-link:hover, .goog-logo-link:active {
+  font-size: 0px;
+  font-weight: bold;
+  color: #444;
+  text-decoration: none;
+}
+
+.goog-te-gadget {
+  margin-right: 45px;
+  font-family: arial;
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  float: left;
+}

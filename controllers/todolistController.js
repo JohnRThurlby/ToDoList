@@ -25,12 +25,12 @@ var phoneText = " "
 // ----------------------------------------------------
 // Index Redirect
 router.get('/', function (req, res) {
-  res.redirect('/index')
+    res.redirect('/index')
 })
 
 // Index Page (render all todolists to DOM)
 router.get('/index', function (req, res) {
-
+  
   todolist.selectAll(function(data) {
     var hbsObject = { todolist: data }
     

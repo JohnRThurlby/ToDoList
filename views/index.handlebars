@@ -2,14 +2,27 @@
 
 <div class="container">
 
-  <div class="row">
-      <div class="col-xs-12 logo-center" id="top-bar">
+  <div class="container-fluid" id="header" >
 
-        <img src="/assets/images/to-do-list_logo.jpg" alt="todolist" />
+          <div class="row" id="mainlogo">
 
-      </div> <!-- end class=col-xs-12 logo-center -->
-  </div> <!-- end class=row -->
+              <div class"column-xs-6"><div id="google_translate_element"></div>
 
+              <script type="text/javascript">
+                  function googleTranslateElementInit() {
+                  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                  }
+              </script> <!-- end script -->
+      
+              <div class"column-xs-6">
+                  <h1><input class="header" type="image" src="/assets/images/to-do-list_logo.jpg" alt="todolist" >
+              </div>
+
+          </div> <!-- end  id="mainlogo -->
+              
+      
+  </div> <!-- end  id="header -->
+  
   <div class="row"> <!-- row to display incomplete tasks on the left, completed on right -->
 
     <div class="col-md-1"></div>
