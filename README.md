@@ -5,7 +5,7 @@ A user can request that the task be sent to them via SMS by adding in a 10 digit
 
 Short video showing capabilities:
 
-![todolist](https://user-images.githubusercontent.com/33644735/40177868-c9ee5402-59ad-11e8-915e-d71b5c41172f.gif)
+![todolist](https://user-images.githubusercontent.com/33644735/40333908-eff77b78-5d28-11e8-8cc1-b312eef2dc0d.gif)
 
 Software used: 
 
