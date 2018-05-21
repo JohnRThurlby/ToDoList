@@ -3,9 +3,9 @@
 // Node Dependencies
 require("dotenv").config()
 const express = require('express'),
-//      keys = require("../config/keys.js"),      
       router = express.Router(),
-      todolist = require('../models/todolist.js')
+      todolist = require('../models/todolist.js'),
+      PhoneNumber = require( 'awesome-phonenumber' )
        
 var twilio = require('twilio');
 
@@ -16,10 +16,24 @@ else {
   var client = new twilio(process.env.ACCOUNTSID, process.env.AUTHTOKEN);
 }
 
-
-var PhoneNumber = require( 'awesome-phonenumber' );
-
 var phoneText = " "
+
+var currentDate = new Date();
+
+var date = currentDate.getDate();
+var month = currentDate.getMonth(); //Be careful! January is 0 not 1
+var year = currentDate.getFullYear();
+
+if (month < 9) {
+   var dateString = year + "-0" +(month + 1) + "-" + date;
+  } 
+  else {
+    var dateString = year + "-" +(month + 1) + "-" + date;
+  }
+console.log(dateString);
+
+deliverText()
+console.log('do we get back here')
 
 // Create routes
 // ----------------------------------------------------
@@ -40,28 +54,33 @@ router.get('/index', function (req, res) {
 
 // Create a todolist
 router.post('/todolist', function (req, res) {
-  console.log(req.body.phonenum)
   
-
   var pn = new PhoneNumber( req.body.phonenum, 'US' );
   if (pn.isValid()) {
     phoneText = "+1" + req.body.phonenum
 
-    console.log("phoneText " + phoneText)
+    req.body.phonenum = phoneText
 
+    console.log("phoneText " + phoneText)
+  }
+  else {
+    req.body.phonenum = 9999999999
+  } 
+  //If text date is not entered, then send text right away
+  if (req.body.textdate == "" && req.body.phonenum != 9999999999) {
+    
+    req.body.textdate = null
+    
     client.messages.create({
       body: req.body.todoitem,
       to: phoneText,  // Text this number
       from: '+16093164815' // From a valid Twilio number
     })
     .then((message) => console.log(message.sid));
-
+     
   }
-  else {
-          
-  }
-  
-  todolist.insertOne(req.body.todoitem, function() {
+    
+  todolist.insertOne(req.body, function() {
     res.redirect('/index')
   })
 })
@@ -82,5 +101,27 @@ router.post('/todolist/delete/:id', function (req, res) {
   })
 })
 
+function deliverText(){
+  todolist.selectAll(function(data) {
+    
+    for (i = 0; i < data.length; i++){
+      
+      if (data[i].textdate == dateString ){
+                
+        client.messages.create({
+          body: data[i].todoitem,
+          to: data[i].phonenumber,  // Text this number
+          from: '+16093164815' // From a valid Twilio number
+        })
+        .then((message) => console.log(message.sid))
+                 
+        setTimeout(function () {
+          
+         }, 1000); 
+        
+      }
+    }
+  })
+}
 // Export routes
 module.exports = router

@@ -17,12 +17,15 @@ var orm = {
   },
 
   // insertOne(), add a new to do list
-  insertOne: function(todoitem, callback){
-
+  insertOne: function(body, callback){
+    console.log(body)
+    console.log(body.phonenum)
     // Run MySQL Query
     connection.query('INSERT INTO todolist SET ?', {
-      todoitem: todoitem,
-      tododone: false
+      todoitem: body.todoitem,
+      tododone: false,
+      phonenumber: body.phonenum,
+      textdate: body.textdate
     }, function (err, result) {
       if (err) throw err
       callback(result)

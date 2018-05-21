@@ -7,6 +7,8 @@ CREATE TABLE todolist(
   PRIMARY KEY (id),
   todoitem VARCHAR(255) NOT NULL,
   tododone BOOLEAN DEFAULT false,
+  phonenumber VARCHAR(12),
+  textdate VARCHAR(10),
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL
   );
 

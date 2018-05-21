@@ -119,6 +119,8 @@
       <br>
       <textarea class="form-control" id="phone" name="phonenum" placeholder="Phone Number (format: xxxxxxxxxx)" maxlength="10" pattern="^\d{10}$"></textarea>
       <br>
+      <textarea class="form-control" id="textdate" name="textdate" placeholder="Date (format: YYYY-MM-DD)" maxlength="10" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"></textarea>
+      <br>
       <button type="submit" class="btn btn-primary addtaskButton" id="text-enter-button">Add Task</button>
 
     </form> <!-- end form -->
@@ -126,31 +128,12 @@
     <p>Enter a new task. Click the "Add Task" button.</p>
     <br>
     <p>If you would like a text of your task, enter a 10 digit phone number.</p>
+    <p>To schedule the text for a certain date, enter a date in the format YYYY-MM-DD.</p>
  
   </div> <!-- end class=col-xs-12 text-center enter_section -->
 
 </div> <!-- end class=row -->
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 	
 
