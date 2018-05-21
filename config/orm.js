@@ -18,14 +18,14 @@ var orm = {
 
   // insertOne(), add a new to do list
   insertOne: function(body, callback){
-    console.log(body)
-    console.log(body.phonenum)
+    
     // Run MySQL Query
     connection.query('INSERT INTO todolist SET ?', {
       todoitem: body.todoitem,
       tododone: false,
       phonenumber: body.phonenum,
-      textdate: body.textdate
+      textdate: body.textdate,
+      textsent: body.textsent
     }, function (err, result) {
       if (err) throw err
       callback(result)
@@ -42,6 +42,16 @@ var orm = {
       })
   },
 
+  // updateOne(), update an existing to do list, set boolean to true
+  updateText: function(id, callback){
+
+    // Run MySQL Query
+    connection.query('UPDATE todolist SET ? WHERE ?', [{textsent: true}, {id: id}], function (err, result) {
+        if (err) throw err
+        callback(result)
+      })
+  },
+
   // deleteOne(), remove a completed to do list
   deleteOne: function(id, callback){
 
@@ -52,8 +62,6 @@ var orm = {
       })
   }
 }
-
-
 
 // Export the ORM object in module.exports.
 module.exports = orm;

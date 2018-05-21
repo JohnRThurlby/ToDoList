@@ -9,6 +9,7 @@ CREATE TABLE todolist(
   tododone BOOLEAN DEFAULT false,
   phonenumber VARCHAR(12),
   textdate VARCHAR(10),
+  textsent BOOLEAN DEFAULT false,
   createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL
   );
 

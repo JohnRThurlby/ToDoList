@@ -30,10 +30,8 @@ if (month < 9) {
   else {
     var dateString = year + "-" +(month + 1) + "-" + date;
   }
-console.log(dateString);
 
 deliverText()
-console.log('do we get back here')
 
 // Create routes
 // ----------------------------------------------------
@@ -54,14 +52,13 @@ router.get('/index', function (req, res) {
 
 // Create a todolist
 router.post('/todolist', function (req, res) {
-  
+  req.body.textsent = false
   var pn = new PhoneNumber( req.body.phonenum, 'US' );
   if (pn.isValid()) {
     phoneText = "+1" + req.body.phonenum
 
     req.body.phonenum = phoneText
-
-    console.log("phoneText " + phoneText)
+    
   }
   else {
     req.body.phonenum = 9999999999
@@ -70,6 +67,7 @@ router.post('/todolist', function (req, res) {
   if (req.body.textdate == "" && req.body.phonenum != 9999999999) {
     
     req.body.textdate = null
+    req.body.textsent = true
     
     client.messages.create({
       body: req.body.todoitem,
@@ -106,7 +104,7 @@ function deliverText(){
     
     for (i = 0; i < data.length; i++){
       
-      if (data[i].textdate == dateString ){
+      if (data[i].textdate == dateString && !data[i].textsent){
                 
         client.messages.create({
           body: data[i].todoitem,
@@ -115,10 +113,8 @@ function deliverText(){
         })
         .then((message) => console.log(message.sid))
                  
-        setTimeout(function () {
-          
-         }, 1000); 
-        
+        todolist.updateText(data[i].id, function() {
+        })
       }
     }
   })
