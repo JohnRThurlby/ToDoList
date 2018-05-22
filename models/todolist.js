@@ -24,10 +24,12 @@ var todolist = {
     })
   },
 
+  
+  
   // update an existing todolist
-  updateOne: function(id, callback){
+  updateText: function(id, callback){
 
-    orm.updateOne(id, function(res){
+    orm.updateText(id, function(res){
       callback(res)
     })
   },
