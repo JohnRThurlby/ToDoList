@@ -27,9 +27,9 @@ var todolist = {
   
   
   // update an existing todolist
-  updateText: function(id, callback){
+  updateOne: function(id, callback){
 
-    orm.updateText(id, function(res){
+    orm.updateOne(id, function(res){
       callback(res)
     })
   },
